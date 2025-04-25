@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller de Inteligencia Artificial Aplicada</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #0ea5e9;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+        
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .module-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 1.5rem;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 4rem;
+        }
+        
+        .module-content {
+            padding: 1.5rem;
+        }
+        
+        .module-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .module-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .status-available {
+            background-color: #ecfdf5;
+            color: var(--success);
+        }
+        
+        .status-upcoming {
+            background-color: #fef3c7;
+            color: var(--warning);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .module-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .module-actions .btn {
+            flex: 1;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin-bottom: 1.5rem;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .module-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+        
+        .module-summary {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            display: none;
+        }
+        
+        .modules-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 2rem;
+        }
+        
+        .module-nav-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background-color: var(--light);
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+        
+        .module-nav-btn:hover, .module-nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 1.5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .modules-nav {
+                gap: 0.3rem;
+            }
+            
+            .module-nav-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Estilos para pantalla de login */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(31, 41, 55, 0.95);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<!-- Pantalla de login -->
+<div id="login-screen">
+    <div class="login-container">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <span style="font-size: 3rem; margin-bottom: 1rem; display: block;">🧠</span>
+            <h2 style="font-size: 1.5rem; color: var(--dark); margin-bottom: 0.5rem;">Taller de IA Aplicada</h2>
+            <p style="color: var(--gray); font-size: 0.9rem;">Ingresa el código de acceso para continuar</p>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <input type="password" id="access-code" placeholder="Código de acceso" style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 1rem; margin-bottom: 0.5rem;">
+            <p id="error-message" style="color: var(--danger); font-size: 0.85rem; display: none; margin-top: 0.5rem;">Código incorrecto. Inténtalo de nuevo.</p>
+        </div>
+        <button id="login-button" class="btn btn-primary" style="width: 100%;">Acceder</button>
+    </div>
+</div>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <span class="logo-icon">🧠</span>
+            <span>Taller de IA Aplicada</span>
+        </div>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="container">
+        <h1>Taller de Inteligencia Artificial Aplicada</h1>
+        <p>Bienvenido a la plataforma oficial donde encontrarás todos los materiales y grabaciones del taller. Avanza a tu ritmo y aprovecha los recursos disponibles.</p>
+    </div>
+</div>
+
+<main class="container">
+    <section id="modules">
+        <h2 class="section-title">Módulos del Taller</h2>
+        
+        <!-- Navegación de módulos -->
+        <div class="modules-nav" id="modules-nav">
+            <!-- Los botones se generarán dinámicamente con JavaScript -->
+        </div>
+        
+        <!-- Grid de tarjetas de módulos -->
+        <div class="module-grid" id="modules-grid">
+            <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+        </div>
+        
+        <!-- Contenedor para los detalles del módulo seleccionado -->
+        <div id="module-details-container">
+            <!-- El contenido del módulo seleccionado se mostrará aquí -->
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div class="footer-section">
+            <h4>Sobre el Taller</h4>
+            <p>El Taller de Inteligencia Artificial Aplicada está diseñado para proporcionar conocimientos prácticos y teóricos en el campo de la IA, permitiendo a los participantes desarrollar habilidades aplicables en entornos profesionales.</p>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>© 2025 Taller de Inteligencia Artificial Aplicada. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Configuración del sistema de login
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginScreen = document.getElementById('login-screen');
+        const accessCode = document.getElementById('access-code');
+        const loginButton = document.getElementById('login-button');
+        const errorMessage = document.getElementById('error-message');
+        
+        // Código de acceso - Cámbialo por el que prefieras
+        const correctCode = "IAA2025";
+        
+        // Verificar si ya está autenticado
+        if (localStorage.getItem('tallerIAAuth') === 'true') {
+            loginScreen.style.display = 'none';
+        }
+        
+        // Función para verificar el código
+        function checkAccessCode() {
+            if (accessCode.value === correctCode) {
+                // Código correcto
+                localStorage.setItem('tallerIAAuth', 'true');
+                loginScreen.style.display = 'none';
+                errorMessage.style.display = 'none';
+            } else {
+                // Código incorrecto
+                errorMessage.style.display = 'block';
+                accessCode.value = '';
+                accessCode.focus();
+            }
+        }
+        
+        // Event listeners
+        loginButton.addEventListener('click', checkAccessCode);
+        
+        accessCode.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAccessCode();
+            }
+        });
+    });
+
+    // Data de los módulos
+    const modulesData = [
+        {
+            id: 1,
+            title: "Modelos de lenguaje",
+            description: "Conoce y domina todas las capacidades que los modelos de lenguaje te ofrecen.",
+            status: "available",
+            icon: "🧠",
+            videoUrl: "https://player.vimeo.com/video/1074616659",
+            summary: `<h4>Resumen del Módulo 1: Modelos de lenguaje</h4>
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">
+                        Nelson introduce el taller de inteligencia artificial aplicada destacando cuatro pilares fundamentales: modelos de lenguaje, instrucciones efectivas, herramientas especializadas y automatización de flujos de trabajo. En esta primera sesión, se enfatiza la importancia de adoptar una mentalidad experimental y abierta hacia la IA, explicando cómo superar las frustraciones iniciales y la paradoja de la productividad: aunque inicialmente lleva más tiempo integrar la IA, eventualmente resulta en mayor eficiencia.
+                    </p>
+                    
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">
+                        Los participantes conocen las principales plataformas de modelos de lenguaje como ChatGPT, Claude, Gemini y Grok, aprendiendo a crear cuentas y entender las diferencias entre ellas. Se realiza una práctica guiada donde los asistentes utilizan un prompt específico para generar ideas sobre cómo aplicar los modelos de lenguaje en su gestión diaria. Nelson demuestra ejemplos concretos de instrucciones personalizadas para crear contenido para redes sociales, redactar comunicaciones profesionales y optimizar tareas administrativas.
+                    </p>
+                    
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">
+                        Se profundiza en la comunicación efectiva con la IA, destacando tres componentes esenciales: dar dirección clara, proporcionar retroalimentación constante y realizar verificación de resultados. Nelson aconseja ver la IA como un asistente inteligente y recomienda proporcionar al menos cinco retroalimentaciones al interactuar con ella para obtener resultados más precisos. Los participantes comparten ejemplos de prompts básicos y avanzados para diferentes escenarios laborales, como análisis de planes de producción, creación de resúmenes ejecutivos y mejora de comunicaciones.
+                    </p>
+                    
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">
+                        La sesión concluye con una explicación sobre la evolución de los modelos de IA actuales, sus capacidades crecientes en diversas áreas como razonamiento, programación y análisis de datos, y los componentes técnicos básicos que todo usuario debe conocer. Se enfatiza que no es necesario entender los aspectos más técnicos para beneficiarse de la IA, pero sí es crucial practicar constantemente y mantener una actitud de aprendizaje continuo. Los participantes reciben como tarea crear cuentas en al menos 2-3 plataformas diferentes y practicar un mínimo de 5 horas durante la semana.
+                    </p>`
+        },
+        {
+            id: 2,
+            title: "Ingeniería de prompts",
+            description: "Diseña prompts que optimicen tus flujos de trabajo diarios mediante una efectiva simbiosis humano-IA.",
+            status: "available",
+            icon: "💻",
+            videoUrl: "https://player.vimeo.com/video/1076753702",
+            summary: `<h4>Resumen del Módulo 2: Ingeniería de prompts</h4>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:00:00 - 00:15:00</strong> - Bienvenida e introducción a la sesión, enfocada en ingeniería de prompts y el impacto de la IA en la productividad profesional.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:15:01 - 00:30:00</strong> - Explicación sobre cómo estructurar solicitudes efectivas a modelos de IA, incluyendo detalles, contexto y ejemplos para obtener respuestas útiles.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:30:01 - 00:45:00</strong> - Presentación de las capacidades y limitaciones de los modelos de lenguaje, destacando su utilidad en tareas de texto (análisis, correos, presentaciones) y sus debilidades en diseño visual o automatización.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:45:01 - 01:00:00</strong> - Demostración práctica de ChatGPT para crear presentaciones y generar contenido, con ejemplos como resúmenes históricos o preguntas de examen.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:00:01 - 01:15:00</strong> - Discusión sobre diferencias entre versiones gratuitas y pagadas de modelos (ChatGPT, Grok, Claude), confidencialidad y recursos para participantes.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:15:01 - 01:30:00</strong> - Explicación de tres niveles de uso de IA en generación de contenido: consultas generales, uso de contexto y prompts predefinidos para tareas repetitivas.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:30:01 - 01:45:00</strong> - Ejercicio práctico en grupos para crear prompts personalizados, como analizar tardanzas laborales y generar gráficos reutilizables.
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <strong>01:45:01 - 02:00:00</strong> - Revisión de trabajos grupales, discusión sobre sesgos en IA y estrategias de mitigación (iteración, verificación cruzada), cierre con reflexiones y siguientes pasos.
+                        </li>
+                    </ul>`
+        },
+        {
+            id: 3,
+            title: "Herramientas no-code",
+            description: "Conviértete en experto en el uso de plataformas y aplicaciones de IA para potenciar tu gestión.",
+            status: "available",
+            icon: "🔍",
+            videoUrl: "https://player.vimeo.com/video/1078651670",
+            summary: `<h4>Resumen del Módulo 3: Herramientas prácticas de Inteligencia Artificial</h4>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:00:00 - 00:15:00</strong> - Nelson da la bienvenida y presenta la sesión enfocada en explorar herramientas prácticas de IA, enfatizando su aplicación para optimizar procesos creativos y profesionales.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:15:01 - 00:30:00</strong> - Se presenta el concepto del "Triángulo de Sinergia de IA", destacando cómo combinar modelos de lenguaje, conocimiento especializado y creatividad humana para generar aplicaciones personalizadas como canciones o presentaciones.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:30:01 - 00:45:00</strong> - Nelson realiza una demostración práctica usando Suno.ai para crear canciones personalizadas mediante prompts detallados, destacando la importancia de gestionar frustraciones y aprender de los errores durante la interacción con estas herramientas.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:45:01 - 01:00:00</strong> - Se introduce Zoom AI Companion, explicando sus capacidades para resumir reuniones, generar tareas pendientes y analizar conversaciones, así como integraciones similares en plataformas como Gemini (Google) y Copilot (Microsoft).
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:00:01 - 01:15:00</strong> - Nelson explora herramientas integradas en aplicaciones cotidianas, mostrando cómo utilizarlas para tareas de reformulación de texto, desarrollo de contenido, generación y edición de imágenes utilizando Grog y Google AI Studio.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:15:01 - 01:30:00</strong> - Se presenta un ejercicio interactivo con la creación de un juego de "desenredar nudos" usando IA, ilustrando cómo la inteligencia artificial puede generar contenido lúdico y práctico rápidamente.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:30:01 - 01:45:00</strong> - Nelson demuestra cómo la IA puede mejorar procesos técnicos, usando como ejemplo una página web para una tienda de golosinas únicas y un sistema de mantenimiento, incluyendo generación automática de documentación y flujogramas.
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <strong>01:45:01 - 02:00:00</strong> - Finalmente, se exploran herramientas de contenido audiovisual como Gen para creación de videos con avatares y Elevenlabs para crear agentes conversacionales. La sesión concluye resaltando la importancia de adaptarse a estas tecnologías emergentes y anticipando la próxima reunión centrada en automatización de flujos de trabajo.
+                        </li>
+                    </ul>`
+        },
+        {
+            id: 4,
+            title: "Integración de aplicativos",
+            description: "Aprende a automatizar procesos de manera eficiente y libera tiempo para lo estratégico.",
+            status: "upcoming",
+            icon: "🚀",
+            videoUrl: "https://player.vimeo.com/video/1072140512",
+            summary: `<h4>Resumen del Módulo 4: Automatización e Integración de Aplicativos</h4>
+                    <p>Este módulo estará disponible próximamente.</p>`
+        }
+    ];
+    
+    // Generar los módulos adicionales (del 5 al 20)
+    for (let i = 5; i <= 20; i++) {
+        const status = i <= 7 ? "upcoming" : "upcoming";
+        const icons = ["📊", "🔧", "📱", "⚙️", "🎯", "📈", "📲", "🔮", "📋", "🛠️", "💼", "📁", "📖", "📓", "⚡", "🔑"];
+        
+        modulesData.push({
+            id: i,
+            title: `Módulo ${i}`,
+            description: `Descripción del módulo ${i} que estará disponible próximamente.`,
+            status: status,
+            icon: icons[i % icons.length],
+            videoUrl: "https://player.vimeo.com/video/1072140512", // URL genérica
+            summary: `<h4>Resumen del Módulo ${i}</h4><p>Este módulo estará disponible próximamente.</p>`
+        });
+    }
+
+    // Función para crear las tarjetas de los módulos
+    function createModuleCards() {
+        const modulesGrid = document.getElementById('modules-grid');
+        const modulesNav = document.getElementById('modules-nav');
+        
+        modulesGrid.innerHTML = '';
+        modulesNav.innerHTML = '';
+        
+        // Agregar botones de navegación
+        modulesData.forEach(module => {
+            const navButton = document.createElement('button');
+            navButton.className = 'module-nav-btn';
+            navButton.textContent = `M${module.id}`;
+            navButton.addEventListener('click', () => {
+                // Remover clase active de todos los botones
+                document.querySelectorAll('.module-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Agregar clase active al botón clickeado
+                navButton.classList.add('active');
+                
+                // Filtrar para mostrar solo el módulo seleccionado
+                filterModules(module.id);
+            });
+            
+            modulesNav.appendChild(navButton);
+        });
+        
+        // Botón para mostrar todos los módulos
+        const allButton = document.createElement('button');
+        allButton.className = 'module-nav-btn active';
+        allButton.textContent = 'Todos';
+        allButton.addEventListener('click', () => {
+            // Remover clase active de todos los botones
+            document.querySelectorAll('.module-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Agregar clase active al botón clickeado
+            allButton.classList.add('active');
+            
+            // Mostrar todos los módulos
+            filterModules(null);
+        });
+        
+        modulesNav.insertBefore(allButton, modulesNav.firstChild);
+        
+        // Crear las tarjetas de
