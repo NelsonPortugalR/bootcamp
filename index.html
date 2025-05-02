@@ -362,6 +362,34 @@
             </div>
         </div>
     </section>
+
+    <section id="module-section-2">
+    <h2 class="section-title">Sesión 2</h2>
+    
+    <!-- Tarjeta del módulo unificada con video y contenido -->
+    <div class="module-card" style="padding-bottom: 1.5rem;">
+        <div class="module-content">
+            <span class="module-status status-available">Disponible</span>
+            <h3>Sesión 2: Modelos de IA para automatización profesional</h3>
+            <p>Aprende sobre las capacidades de diferentes modelos de lenguaje y cómo aplicarlos para optimizar tareas laborales específicas.</p>
+        </div>
+        
+        <div class="video-container" style="margin: 1.5rem;">
+            <iframe id="vimeo-player-2" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1080851837" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <button id="summary-toggle-2" class="btn btn-outline" style="margin-top: 1.5rem; display: block; margin-left: auto; margin-right: auto; width: 200px;">Ver Resumen</button>
+        
+        <div id="summary-content-2" class="module-summary">
+            <h4>Resumen de la Sesión 2: Modelos de IA para automatización</h4>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">En esta sesión se discutieron las capacidades y aplicaciones de diferentes herramientas de IA como ChatGPT, Claude, Gemini y Grok para optimizar tareas laborales y mejorar la eficiencia en diversos ámbitos profesionales. Los participantes compartieron experiencias y propuestas para implementar estas tecnologías en sus roles, mientras se enfatizó la importancia de la dirección y retroalimentación humana en el proceso.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Nelson explicó cómo crear y utilizar proyectos en ChatGPT para diversos fines, destacando la importancia de subir documentos relevantes para proporcionar contexto y obtener respuestas más precisas. También demostró cómo los modelos pueden realizar investigaciones a fondo, generar contenido en diversos formatos y procesar diferentes tipos de documentos para ofrecer resultados detallados y estratégicos.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Se analizaron casos prácticos como la creación de propuestas de transformación en ingeniería clínica, automatización de contratos, generación de informes empresariales y análisis de precios de commodities. Los participantes aprendieron a utilizar múltiples modelos de IA para obtener perspectivas más completas sobre un tema, mejorando iterativamente las respuestas iniciales.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">La sesión incluyó demostraciones sobre cómo estructurar solicitudes efectivas a la IA y cómo crear plantillas estandarizadas para tareas repetitivas. Se enfatizó la importancia de utilizar estas herramientas para tareas complejas y estratégicas, no solo para tareas operativas simples, aprovechando los avances en la memoria de contexto y la reducción en el costo de uso.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Como siguientes pasos, los participantes acordaron: completar el Excel con las actividades diarias y el tiempo que toman, probar la IA con documentos reales para verificar su eficacia, preparar 2-3 prompts estandarizados para la próxima sesión, identificar casos donde los modelos no dieron el resultado esperado, y compartir sus experiencias de uso en la próxima reunión.</p>
+        </div>
+    </div>
+</section>
 </main>
 
 <footer>
@@ -411,21 +439,35 @@
         });
     });
 
-    // Función para mostrar/ocultar el resumen
-    document.addEventListener('DOMContentLoaded', function() {
-        const summaryToggle = document.getElementById('summary-toggle');
-        const summaryContent = document.getElementById('summary-content');
-        
-        summaryToggle.addEventListener('click', function() {
-            if (summaryContent.style.display === 'none' || summaryContent.style.display === '') {
-                summaryContent.style.display = 'block';
-                summaryToggle.textContent = 'Ocultar Resumen';
+// Función para mostrar/ocultar el resumen
+document.addEventListener('DOMContentLoaded', function() {
+    const summaryToggle = document.getElementById('summary-toggle');
+    const summaryContent = document.getElementById('summary-content');
+    const summaryToggle2 = document.getElementById('summary-toggle-2');
+    const summaryContent2 = document.getElementById('summary-content-2');
+    
+    summaryToggle.addEventListener('click', function() {
+        if (summaryContent.style.display === 'none' || summaryContent.style.display === '') {
+            summaryContent.style.display = 'block';
+            summaryToggle.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent.style.display = 'none';
+            summaryToggle.textContent = 'Ver Resumen';
+        }
+    });
+    
+    if (summaryToggle2) {
+        summaryToggle2.addEventListener('click', function() {
+            if (summaryContent2.style.display === 'none' || summaryContent2.style.display === '') {
+                summaryContent2.style.display = 'block';
+                summaryToggle2.textContent = 'Ocultar Resumen';
             } else {
-                summaryContent.style.display = 'none';
-                summaryToggle.textContent = 'Ver Resumen';
+                summaryContent2.style.display = 'none';
+                summaryToggle2.textContent = 'Ver Resumen';
             }
         });
-    });
+    }
+});
 </script>
 </body>
 </html>
