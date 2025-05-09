@@ -493,6 +493,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+// Para el módulo 3
+const summaryToggle3 = document.getElementById('summary-toggle-3');
+const summaryContent3 = document.getElementById('summary-content-3');
+
+if (summaryToggle3) {
+    summaryToggle3.addEventListener('click', function() {
+        if (summaryContent3.style.display === 'none' || summaryContent3.style.display === '') {
+            summaryContent3.style.display = 'block';
+            summaryToggle3.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent3.style.display = 'none';
+            summaryToggle3.textContent = 'Ver Resumen';
+        }
+    });
+}
+    
 </script>
 </body>
 </html>
