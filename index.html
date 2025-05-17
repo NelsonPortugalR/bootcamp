@@ -414,6 +414,33 @@
             <p style="margin-bottom: 1rem; line-height: 1.6;">Los participantes deberán: construir una biblioteca de prompts reutilizables; explorar aplicaciones de ChatGPT y Claude; leer guías sobre prompts; crear e integrar al menos un prompt en su flujo de trabajo; y revisar la grabación de la sesión. Tareas específicas incluyen: Narda implementará IA para convertir catálogos; Jenny optimizará redacción de correos; Mery identificará proyectos para aplicar IA; y todos experimentarán con los modelos compartidos por Nelson.</p>
         </div>
     </div>
+    <section id="module-section-4">
+    <h2 class="section-title">Sesión 4</h2>
+    
+    <!-- Tarjeta del módulo unificada con video y contenido -->
+    <div class="module-card" style="padding-bottom: 1.5rem;">
+        <div class="module-content">
+            <span class="module-status status-available">Disponible</span>
+            <h3>Sesión 4: Optimización de Flujos de Trabajo con IA</h3>
+            <p>Descubre cómo implementar la inteligencia artificial para optimizar y automatizar flujos de trabajo profesionales.</p>
+        </div>
+        
+        <div class="video-container" style="margin: 1.5rem;">
+            <iframe id="vimeo-player-4" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1084672115" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <button id="summary-toggle-4" class="btn btn-outline" style="margin-top: 1.5rem; display: block; margin-left: auto; margin-right: auto; width: 200px;">Ver Resumen</button>
+        
+        <div id="summary-content-4" class="module-summary">
+            <h4>Resumen de la Sesión 4: Optimización de Flujos de Trabajo</h4>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">El equipo discutió el uso de inteligencia artificial para optimizar diversos flujos de trabajo profesionales. Pedro compartió cómo logró reducir el tiempo de preparación de sus clases de 3.5 horas a aproximadamente 10 minutos utilizando ChatGPT y Claude para generar y estructurar contenido, aunque mencionó que aún existen desafíos con la generación automática de archivos y la integración completa con Canva.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Durante la sesión, Nelson enfatizó la importancia de robustecer los prompts para obtener mejores resultados, en lugar de simplemente cambiar de modelo. Compartió un ejemplo detallado de cómo desarrolló un prompt complejo para estandarizar CVs, explicando cómo cada línea del prompt surgió de resolver una frustración o error previo. Este enfoque de mejora continua demostró ser más efectivo que buscar soluciones inmediatas.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Los participantes también exploraron casos específicos de aplicación de IA, como el análisis de imágenes, la creación de fórmulas en Excel y la generación de resúmenes de reuniones. Nelson ofreció consejos prácticos para mejorar los resultados, como utilizar capturas de pantalla para proporcionar contexto visual y pedir al modelo que aprenda de intentos anteriores para refinar sus respuestas.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Se realizó una demostración práctica sobre cómo utilizar modelos de lenguaje para crear y editar páginas web mediante comandos de texto. Nelson explicó que este enfoque permite obtener resultados sin necesidad de habilidades técnicas específicas, destacando que lo fundamental es proporcionar instrucciones claras, retroalimentación precisa y realizar una verificación final de los resultados.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Como próximos pasos, el equipo acordó seguir refinando sus prompts, compartir avances y desafíos en la próxima reunión, explorar diferentes modelos de lenguaje como ChatGPT, Claude, Grok y Gemini, y practicar la creación de páginas web interactivas utilizando estas herramientas de IA, con un enfoque en la mejora continua a través de iteraciones y retroalimentación.</p>
+        </div>
+    </div>
+</section>
 </section>    
 </main>
 
@@ -508,7 +535,21 @@ if (summaryToggle3) {
         }
     });
 }
-    
+// Para el módulo 4
+const summaryToggle4 = document.getElementById('summary-toggle-4');
+const summaryContent4 = document.getElementById('summary-content-4');
+
+if (summaryToggle4) {
+    summaryToggle4.addEventListener('click', function() {
+        if (summaryContent4.style.display === 'none' || summaryContent4.style.display === '') {
+            summaryContent4.style.display = 'block';
+            summaryToggle4.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent4.style.display = 'none';
+            summaryToggle4.textContent = 'Ver Resumen';
+        }
+    });
+}
 </script>
 </body>
 </html>
