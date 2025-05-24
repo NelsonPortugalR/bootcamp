@@ -576,6 +576,22 @@ if (summaryToggle4) {
         }
     });
 }
+
+// Para el módulo 5
+const summaryToggle5 = document.getElementById('summary-toggle-5');
+const summaryContent5 = document.getElementById('summary-content-5');
+
+if (summaryToggle5) {
+    summaryToggle5.addEventListener('click', function() {
+        if (summaryContent5.style.display === 'none' || summaryContent5.style.display === '') {
+            summaryContent5.style.display = 'block';
+            summaryToggle5.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent5.style.display = 'none';
+            summaryToggle5.textContent = 'Ver Resumen';
+        }
+    });
+}
 </script>
 </body>
 </html>
