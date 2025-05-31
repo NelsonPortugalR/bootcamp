@@ -467,6 +467,34 @@
         </div>
     </div>        
 </section>
+<section id="module-section-6">
+    <h2 class="section-title">Sesión 6</h2>
+    
+    <!-- Tarjeta del módulo unificada con video y contenido -->
+    <div class="module-card" style="padding-bottom: 1.5rem;">
+        <div class="module-content">
+            <span class="module-status status-available">Disponible</span>
+            <h3>Sesión 6: Automatizando con Appscript</h3>
+            <p>Descubre cómo automatizar tareas en Google Workspace utilizando Google Apps Script para crear flujos de trabajo eficientes.</p>
+        </div>
+        
+        <div class="video-container" style="margin: 1.5rem;">
+            <iframe id="vimeo-player-6" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1089052990" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <button id="summary-toggle-6" class="btn btn-outline" style="margin-top: 1.5rem; display: block; margin-left: auto; margin-right: auto; width: 200px;">Ver Resumen</button>
+        
+        <div id="summary-content-6" class="module-summary">
+            <h4>Resumen de la Sesión 6: Automatizando con Apps Script</h4>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">En esta sesión introductoria a Google Apps Script, los participantes exploraron los conceptos fundamentales de esta poderosa herramienta de automatización integrada en Google Workspace. Se comenzó con la creación del clásico "Hello World" para familiarizarse con el entorno de desarrollo y entender cómo ejecutar scripts básicos dentro del ecosistema de Google.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Los participantes aprendieron qué es Google Apps Script y para qué sirve: una plataforma de desarrollo basada en JavaScript que permite automatizar tareas entre las aplicaciones de Google como Sheets, Gmail, Drive, Calendar y muchas más. Se destacó cómo esta herramienta puede eliminar tareas repetitivas y crear flujos de trabajo inteligentes sin necesidad de ser un programador experto.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Durante la sesión se realizaron ejercicios prácticos trabajando con Google Sheets, donde los participantes aprendieron a manipular datos, leer y escribir en celdas, y automatizar cálculos. También se exploró la integración con Gmail, mostrando cómo Apps Script puede enviar correos automáticos, procesar mensajes entrantes y crear notificaciones personalizadas basadas en eventos específicos.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">Se discutió el enorme potencial de Apps Script para automatizar procesos laborales complejos, desde la generación automática de reportes hasta la sincronización de datos entre diferentes plataformas. Los participantes comprendieron que aunque se trata de conceptos básicos, estas herramientas pueden escalar para crear soluciones empresariales robustas que ahorren horas de trabajo manual.</p>
+            <p style="margin-bottom: 1rem; line-height: 1.6;">La sesión concluyó con una visión general de las posibilidades futuras: creación de complementos personalizados, integración con APIs externas, automatización de flujos de trabajo complejos y desarrollo de aplicaciones web simples. Se enfatizó que dominar estos conceptos básicos es el primer paso para desbloquear un mundo de automatización que puede transformar significativamente la eficiencia en el trabajo diario.</p>
+        </div>
+    </div>        
+</section>
+        
 </section>    
 </main>
 
@@ -592,6 +620,21 @@ if (summaryToggle5) {
         }
     });
 }
+// Para el módulo 6
+const summaryToggle6 = document.getElementById('summary-toggle-6');
+const summaryContent6 = document.getElementById('summary-content-6');
+
+if (summaryToggle6) {
+    summaryToggle6.addEventListener('click', function() {
+        if (summaryContent6.style.display === 'none' || summaryContent6.style.display === '') {
+            summaryContent6.style.display = 'block';
+            summaryToggle6.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent6.style.display = 'none';
+            summaryToggle6.textContent = 'Ver Resumen';
+        }
+    });
+}    
 </script>
 </body>
 </html>
