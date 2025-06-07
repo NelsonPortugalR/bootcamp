@@ -662,6 +662,21 @@ if (summaryToggle6) {
             summaryToggle6.textContent = 'Ver Resumen';
         }
     });
+} 
+// Para el módulo 7
+const summaryToggle7 = document.getElementById('summary-toggle-7');
+const summaryContent7 = document.getElementById('summary-content-7');
+
+if (summaryToggle7) {
+    summaryToggle7.addEventListener('click', function() {
+        if (summaryContent7.style.display === 'none' || summaryContent7.style.display === '') {
+            summaryContent7.style.display = 'block';
+            summaryToggle7.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent7.style.display = 'none';
+            summaryToggle7.textContent = 'Ver Resumen';
+        }
+    });
 }    
 </script>
 </body>
