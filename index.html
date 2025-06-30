@@ -730,6 +730,37 @@ if (summaryToggle7) {
         }
     });
 }    
+    // Para el módulo 8
+const summaryToggle8 = document.getElementById('summary-toggle-8');
+const summaryContent8 = document.getElementById('summary-content-8');
+
+if (summaryToggle8) {
+    summaryToggle8.addEventListener('click', function() {
+        if (summaryContent8.style.display === 'none' || summaryContent8.style.display === '') {
+            summaryContent8.style.display = 'block';
+            summaryToggle8.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent8.style.display = 'none';
+            summaryToggle8.textContent = 'Ver Resumen';
+        }
+    });
+}
+
+// Para el módulo 9
+const summaryToggle9 = document.getElementById('summary-toggle-9');
+const summaryContent9 = document.getElementById('summary-content-9');
+
+if (summaryToggle9) {
+    summaryToggle9.addEventListener('click', function() {
+        if (summaryContent9.style.display === 'none' || summaryContent9.style.display === '') {
+            summaryContent9.style.display = 'block';
+            summaryToggle9.textContent = 'Ocultar Resumen';
+        } else {
+            summaryContent9.style.display = 'none';
+            summaryToggle9.textContent = 'Ver Resumen';
+        }
+    });
+}
 </script>
 </body>
 </html>
